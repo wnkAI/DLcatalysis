@@ -1,0 +1,66 @@
+# DLcatalysis 3.0 — full pip requirements (train + data preprocessing + HPO + infer)
+# Tested on Python 3.12, CUDA 12.8.
+# Install with:
+#   conda create -n enzsub3.12 python=3.12 -y && conda activate enzsub3.12
+#   pip install -r requirements.txt
+
+# ── Core deep-learning stack (CUDA 12.8) ────────────────────────────────
+torch==2.8.0
+torchaudio==2.8.0
+torchvision==0.23.0
+pytorch-lightning==2.6.0
+lightning-utilities==0.15.2
+torchmetrics==1.8.2
+
+# ── PyG + extensions (substrate GNN, data batching) ─────────────────────
+# These wheels MUST match the torch + CUDA combo above.
+torch-geometric==2.7.0
+--find-links https://data.pyg.org/whl/torch-2.8.0+cu128.html
+torch_cluster
+torch_scatter
+torch_sparse
+torch_spline_conv
+pyg_lib
+
+# ── Sequence encoders (ProtT5, MolT5) ───────────────────────────────────
+transformers==4.48.1
+sentencepiece==0.2.1
+tokenizers==0.21.4
+safetensors==0.7.0
+huggingface-hub==0.36.0
+accelerate==1.12.0
+
+# ── Substrate features ──────────────────────────────────────────────────
+# Morgan fingerprint
+rdkit==2025.9.3
+# GROVER fingerprint (graph attention transformer)
+dgl==2.1.0
+descriptastorus==2.8.0
+
+# ── Data ────────────────────────────────────────────────────────────────
+lmdb==1.7.5
+numpy==2.2.6
+pandas==2.3.3
+scipy==1.16.3
+scikit-learn==1.8.0
+biopython==1.85
+openpyxl==3.1.5
+
+# ── Logging ─────────────────────────────────────────────────────────────
+tensorboard==2.20.0
+tensorboardX==2.6.4
+rich==14.2.0
+tqdm==4.67.1
+
+# ── Config ──────────────────────────────────────────────────────────────
+PyYAML==6.0.3
+omegaconf==2.3.0
+
+# ── HPO ─────────────────────────────────────────────────────────────────
+optuna==4.7.0
+
+# ── Utils ───────────────────────────────────────────────────────────────
+filelock==3.20.2
+requests==2.32.5
+packaging==26.0
+regex==2025.11.3

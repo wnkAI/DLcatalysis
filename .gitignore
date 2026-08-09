@@ -1,0 +1,72 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.Python
+.venv/
+venv/
+
+# Notebook
+.ipynb_checkpoints/
+
+# Pipeline shell scripts (run them manually, see README)
+*.sh
+# except the GROVER fingerprint generator — needed to reproduce substrate features
+!DataSet/brenda/run_grover.sh
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OMC session state
+.omc/
+
+# Large training artifacts (kept on the server, not in git)
+ckpt*/
+*.ckpt
+log/
+log_*/
+ckpt_trial*/
+*.zip
+
+# Cached features (server-side)
+*.lmdb
+*.lmdb-lock
+*.npy
+*.pt
+*.pkl
+*.h5
+*.h5ad
+
+# Bayesian HPO outputs (regenerable)
+bayes_results/
+hpo*.log
+run_hpo.log
+*.log
+
+# Third-party vendored code (kept out, see README for installation)
+other_softwares/
+
+# Large dataset content; keep only the loader / processing scripts
+DataSet/**/*.csv
+DataSet/**/*.json
+DataSet/**/*.fasta
+DataSet/**/*.a3m
+# except the raw BRENDA dataset, published for reproducibility
+!DataSet/brenda/kkm_data.json
+!DataSet/brenda/process.py
+!DataSet/brenda/compute_*.py
+!DataSet/brenda/covert_json.py
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Result artifacts (figures, tables, predictions, HPO outputs) — kept off git
+result/
+
+# Training utilities — only ship the entrypoint
+train/*
+!train/run_train.py

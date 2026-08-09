@@ -1,0 +1,90 @@
+data:
+  data_representer: sequence_molecular
+  grover_path: ../DataSet/final_data/grover_fingerprint.lmdb
+  mol_graph_path: ../DataSet/final_data/mol_graphs.pt
+  molt5_path: ../DataSet/final_data/molt5_embedding.npy
+  morgan_path: ../DataSet/final_data/morgan_fingerprint.npy
+  seq_lmdb:
+    lmdb: ../DataSet/final_data/seq_prot5.lmdb
+    map_size: 644245094400
+    max_seq_len: 1000
+    seq_fp: ../DataSet/brenda/final_seq.csv
+  target_mode: raw
+  use_qt: false
+model:
+  cross_attention:
+    disable: false
+    n_head: 4
+    n_layers: 2
+  dropout: 0.31961574727573644
+  ec:
+    ec1_vocab: 8
+    ec2_vocab: 200
+    ec3_vocab: 200
+    ec4_vocab: 1200
+    ec_embed_dim: 16
+  embedding:
+    grover: true
+    grover_dim: 4885
+    molt5: true
+    molt5_dim: 768
+    morgan: true
+    morgan_dim: 1024
+    pro_seq: true
+    unimol: false
+  feature_norm: true
+  gate: true
+  hidden_dim: 512
+  label_noise: 0.0
+  loss_type: logcosh
+  modality_dropout: 0.07740311496370586
+  model_name: DLcatalysis
+  molt5_model_path: laituan245/molt5-base-smiles2caption
+  output_header:
+    act_fn: relu
+    hidden_dim: 256
+    norm_fn: layer
+    num_layers: 2
+  pcc_loss_weight: 0.34533485751244
+  prot5_model_path: Rostlab/prot_t5_xl_uniref50
+  rank_loss_substrate_weight: 0.10760393959855669
+  rank_loss_weight: 0.10181577409669011
+  rank_margin_enzyme: 0.13484071681098986
+  rank_margin_substrate: 0.1
+  rank_max_pairs_enzyme: 16
+  rank_max_pairs_substrate: 16
+  rank_min_diff_enzyme: 0.1
+  rank_min_diff_substrate: 0.1
+  seq_module:
+    seq_hidden_dim: 512
+  skip_attended: false
+  substrate_gnn:
+    dropout: 0.1
+    enabled: false
+    n_layers: 4
+  use_ec: true
+  use_msa: false
+train:
+  batch_size: 16
+  checkpoint_path: ../train/ckpt
+  device: cuda
+  earlystrop_patience: 15
+  grad_accum: 1
+  log_path: ../train/log
+  loss: {}
+  max_epochs: 100
+  min_epochs: 10
+  n_cpus: 8
+  n_gpu:
+  - 0
+  optimizer:
+    lr: 7.989820607217861e-05
+    min_lr: 1e-6
+    name: adamW
+    sched_factor: 0.5
+    sched_patience: 10
+    warm_epoch: 5
+    weight_decay: 0.06751163544221217
+  precision: 16-mixed
+  seed: 42
+  valid_freq: 1.0
